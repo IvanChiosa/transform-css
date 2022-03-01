@@ -1,0 +1,27 @@
+main>ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    gap: 2rem 1rem;
+}
+
+figure>img {
+    width: 100%;
+    border-radius: 0.5rem;
+    display: block;
+}
+
+figure {
+    background-color: lightslategray;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0;
+    display: block;
+}
+
+figure>figcaption {
+    color: white;
+    text-align: center;
+}
