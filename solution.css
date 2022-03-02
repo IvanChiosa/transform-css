@@ -29,11 +29,11 @@ figure > figcaption {
 }
 
 ul > li:nth-child(1) > figure {
-  transform: perspective(600px) rotateY(45deg);
+  transform: perspective(500px) rotateY(45deg);
 }
 
 ul > li:nth-child(2) > figure {
-  transform: perspective(500px) rotateX(45deg);
+  transform: perspective(300px) rotateX(45deg);
 }
 
 ul > li:nth-child(3) > figure {
@@ -56,8 +56,8 @@ ul > li:nth-child(6) > figure {
 }
 
 ul > li:nth-child(7) > figure {
-  transform: perspective(20cm) rotateX(-60deg) scaleY(5);
-  transform-origin: center;
+  transform: perspective(20cm) rotateX(-60deg) scaleY(3);
+  transform-origin: top center;
 }
 ul > li:nth-child(8) > figure {
   transform-origin: center;
