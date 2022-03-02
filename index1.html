@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang='de'>
+<head>
+  <meta charset='UTF-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <link rel='stylesheet' href='../assets/global.css'>
+  <title>Tranformationen</title>
+  <style>
+    .beispiele{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-auto-rows: 200px;
+      gap: 2rem;
+    }
+
+    .beispiele section {
+      border: 1px solid black;
+    }
+
+    .beispiele section figure {
+      position: relative;
+      margin: 0;
+      height: 100%;
+      background-image: repeating-linear-gradient(to right, grey 0px, grey 1px, transparent 1px, transparent calc(1em - 1px)), repeating-linear-gradient(to bottom, grey 0px, grey 1px, transparent 1px, transparent calc(1em - 1px));
+      transition: transform 500ms;
+    }
+    .beispiele section figure figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid black;
+    }
+
+    #scale-1-5:hover figure {
+      transform: scale(1.5);
+    }
+
+    #scale-0-5:hover figure {
+      transform: scale(0.5);
+    }
+
+    #scalex-0-5:hover figure {
+      transform: scaleX(0.5);
+    }
+    #scaley-0-5:hover figure {
+      transform: scaleY(0.5);
+    }
+
+    #translate-25-25:hover figure {
+      transform: translate(25%, 25%);
+    }
+
+    #translatex-minus-25:hover figure {
+      transform: translateX(-25%);
+    }
+
+    #translatey-minus-2rem:hover figure {
+      transform: translateY(-2rem);
+    }
+
+    #translatez-3rem:hover figure {
+      transform: perspective(300px) translateZ(3rem);
+    }
+
+    #rotate-45:hover figure {
+      transform: rotate(45deg);
+    }
+
+    #rotatex-45:hover figure {
+      transform: perspective(300px) rotateX(45deg);
+    }
+    #rotatey-45:hover figure {
+      transform: perspective(300px) rotateY(45deg);
+    }
+
+    #rotatexy-45:hover figure {
+      transform: perspective(300px) rotateX(12.5deg) rotateY(12.5deg);
+    }
+
+    #skew-12-5:hover figure {
+      transform: skew(12.5deg, 5deg);
+    }
+
+    #skewx-12-5:hover figure {
+      transform: skewX(12.5deg);
+    }
+
+    #skewy-12-5:hover figure {
+      transform: skewY(12.5deg);
+    }
+
+    #rotatex-45-2 figure {
+      transform-origin: bottom center;
+    }
+    #rotatex-45-2:hover figure {
+      transform: perspective(600px) rotateX(45deg);
+    }
+
+    #rotatey-45-2 figure {
+      transform-origin: center left;
+    }
+    #rotatey-45-2:hover figure {
+      transform: perspective(600px) rotateY(45deg);
+    }
+
+    #scale-0-5-2 figure {
+      transform-origin: bottom left;
+    }
+
+    #scale-0-5-2:hover figure {
+      transform: scale(0.5);
+    }
+
+    #rotate-45-2 figure {
+      transform-origin: 25% 3rem;
+    }
+
+    #rotate-45-2:hover figure {
+      transform: rotate(45deg);
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Transformationen</h1>
+  <p>Idee: die optische Gestalt von Elementen transformieren.</p>
+  <p>CSS-Eigenschaft: <code>transform</code></p>
+  <p>Werte, Tranformationsmatrizen, die von CSS-Funktionen erstellt werden, um bestimmte Veränderungen am Element zu bewirken.</p>
+  <ul><li>Skalieren: scale(Faktor), optional nur in eine Dimention mit scaleX(Faktor) oder scaleY(Faktor)</li>
+    <li>Verschieben: translate(Länge für X-Verschiebung, Länge für Y-Verschiebung). %-Angaben beziehen sich auf das Element selbst, nicht auf das Elter</li>
+    <li>Drehen: rotate(Winkel), rotate ohne Angaben meint um die Z-Achse (die Linie vom Bildschirm in unser Gesicht.) positive Winkel gehen in Richtung einer Achse gegen den Uhrzeiger-Sinn.
+    </li>
+    <li>Schrägstellen (wie font-style:italic): skew(Winkel) Schräg oder Schiefstellen entlang der X-Achse.
+    </li>
+  </ul>
+<h2>die 3. Dimension</h2>
+<p>Für Alle Transformationen die in Z-Richtung gehen sollen, muss der Browser wissen, wie weit wir als Betrachter von der Webseite weg sind.</p>
+<p>Wir nennen dem Browser den Abstand zwischen uns und dem Bildschirm über zwei Möglichkeiten.</p>
+<ul>
+  <li>perspective-Funktion innerhalb der transform eigenschaft.
+    <pre lang="css">transform: <strong>perspective</strong>(500px) translateZ(200px);</pre>
+  </li>
+  <li>CSS-Eigenschaft: perspective an einem Elternelement, das gilt dann für alle Kinder, die was in Z-Richtung machen.
+    <pre lang="css">.3Dcontext 
+{ 
+  <strong>perspective</strong>: 500px 
+}
+
+.3Dcontext .entgegen {
+  transform: translateZ(300px);
+}</pre>
+  </li>
+</ul>
+
+  <h2>Beispiele</h2>
+  <section class="beispiele">
+    <section id="scale-1-5">
+      <figure>
+        <figcaption>scale(1.5)</figcaption>
+      </figure>
+    </section>
+
+    <section id="scale-0-5">
+      <figure>
+        <figcaption>scale(0.5)</figcaption>
+      </figure>
+    </section>
+
+    <section id="scalex-0-5">
+      <figure>
+        <figcaption>scaleX(0.5)</figcaption>
+      </figure>
+    </section>
+
+    <section id="scaley-0-5">
+      <figure>
+        <figcaption>scaleY(0.5)</figcaption>
+      </figure>
+    </section>
+
+    <section id="translate-25-25">
+      <figure>
+        <figcaption>translate(25%, 25%)</figcaption>
+      </figure>
+    </section>
+
+    <section id="translatex-minus-25">
+      <figure>
+        <figcaption>translateX(-25%)</figcaption>
+      </figure>
+    </section>
+
+    <section id="translatey-minus-2rem">
+      <figure>
+        <figcaption>translateY(-2rem)</figcaption>
+      </figure>
+    </section>
+
+    <section id="translatez-3rem">
+      <figure>
+        <figcaption>perspective(300px) translateZ(3rem)</figcaption>
+      </figure>
+    </section>
+
+    <section id="rotate-45">
+      <figure>
+        <figcaption>rotate(45deg)</figcaption>
+      </figure>
+    </section>
+
+    <section id="rotatex-45">
+      <figure>
+        <figcaption>perspective(300px) rotateX(45deg)</figcaption>
+      </figure>
+    </section>
+
+    <section id="rotatey-45">
+      <figure>
+        <figcaption>perspective(300px) rotateY(45deg)</figcaption>
+      </figure>
+    </section>
+
+    <section id="rotatexy-45">
+      <figure>
+        <figcaption>perspective(300px) rotateX(12.5deg) rotateY(12.5deg)</figcaption>
+      </figure>
+    </section>
+
+    <section id="skew-12-5">
+      <figure>
+        <figcaption>skew(12.5deg, 5deg)</figcaption>
+      </figure>
+    </section>
+
+    <section id="skewx-12-5">
+      <figure>
+        <figcaption>skewX(12.5deg)</figcaption>
+      </figure>
+    </section>
+
+    <section id="skewy-12-5">
+      <figure>
+        <figcaption>skewY(12.5deg)</figcaption>
+      </figure>
+    </section>
+
+  </section>
+
+  <h2>Ausgangspunkt von Transformationen</h2>
+  <p>engl. die transform-origin, kann über CSS auch neu gesetzt werden. Es handelt sich um die Position der koordinate (0,0), den Schnittpunkt von X- und Y-Achse innerhalb des Elements.</p>
+  <p>Standard ist Mitte. transform-origin: center center;</p>
+  <section class="beispiele">
+    <section id="rotatex-45-2">
+      <figure>
+        <figcaption>perspective(600px) rotateX(45deg), transform-origin: bottom center</figcaption>
+      </figure>
+    </section>
+
+    <section id="rotatey-45-2">
+      <figure>
+        <figcaption>perspective(600px) rotateY(45deg); transform-origin: center left;</figcaption>
+      </figure>
+    </section>
+
+    <section id="scale-0-5-2">
+      <figure>
+        <figcaption>scale(0.5); transform-origin: bottom-left;</figcaption>
+      </figure>
+    </section>
+
+    <section id="rotate-45-2">
+      <figure>
+        <figcaption>rotate(45deg); transform-origin: 25% 3rem;</figcaption>
+      </figure>
+    </section>
+
+  </section>
+</body>
+</html>
